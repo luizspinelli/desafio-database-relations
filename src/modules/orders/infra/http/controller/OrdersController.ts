@@ -9,8 +9,6 @@ export default class OrdersController {
   public async show(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
-    console.log('controller', id);
-
     const findOrder = container.resolve(FindOrderService);
 
     const order = await findOrder.execute({

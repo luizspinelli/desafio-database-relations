@@ -27,15 +27,16 @@ class Order {
   @Column()
   customer_id: string;
 
-  @ManyToOne(() => Customer, () => Order)
+  @ManyToOne(() => Customer, () => Order, {
+    eager: true,
+  })
   @JoinColumn({ name: 'customer_id' })
   customer: Customer;
 
-  @OneToMany(() => OrdersProducts, () => Order, {
+  @OneToMany(() => OrdersProducts, order => order.order, {
     eager: true,
     cascade: true,
   })
-  @JoinTable()
   order_products: OrdersProducts[];
 }
 

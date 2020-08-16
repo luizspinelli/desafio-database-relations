@@ -23,14 +23,11 @@ class OrdersRepository implements IOrdersRepository {
   }
 
   public async findById(id: string): Promise<Order | undefined> {
-    console.log('repository', id);
     const order = await this.ormRepository.findOne({
       where: {
         id,
       },
     });
-
-    console.log(order);
 
     return order;
   }
